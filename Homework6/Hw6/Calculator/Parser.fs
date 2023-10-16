@@ -2,11 +2,6 @@ module Hw6.Calculator.Parser
 open Hw6.Calculator.MaybeBuilder
 open Hw6.Calculator.Calculator
 open System
-
-let isArgLengthSupported (args:string[]): Result<'a,'b> =
-    if (args.Length = 3) then
-        Ok args
-    else Error "Wrong args length"
     
 [<System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage>]
 let inline isOperationSupported (arg1, operation, arg2): Result<('a * CalculatorOperation * 'b), string> =
@@ -34,8 +29,7 @@ let parseArgs (args: string[]): Result<('a * CalculatorOperation * 'b), string> 
 
 let parseCalcArguments (args: string[]): Result<('a * CalculatorOperation * 'b), string> =
     maybe {
-        let! argsLengthSupported = args |> isArgLengthSupported
-        let! argsParsed = argsLengthSupported |> parseArgs
+        let! argsParsed = args |> parseArgs
         return argsParsed
     }
     
