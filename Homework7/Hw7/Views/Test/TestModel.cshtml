@@ -1,18 +1,8 @@
-@model dynamic
+@using Hw7.MyHtmlServices
+@model Hw7.Models.ForTests.TestModel
 
-@{
-    Layout = null;
+@using (Html.BeginForm())
+{
+    @Html.MyEditorForModel()
+    <button type="submit" class="btn btn-primary mt-2">Sign up</button>
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
