@@ -18,7 +18,7 @@ public static class HtmlHelperExtensions
 
         foreach (var property in properties)
         {
-            var field = CreateFormHandler.CreateForm(property, model);
+            var field = CreateFormHandler.CreateField(property, model);
             htmlBuilder.AppendHtml(field);
         }
 

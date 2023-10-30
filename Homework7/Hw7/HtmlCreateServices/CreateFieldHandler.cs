@@ -9,7 +9,7 @@ namespace Hw7.HtmlCreateServices;
 
 public class CreateFormHandler
 {
-    public static IHtmlContent CreateForm(PropertyInfo property, object? model)
+    public static IHtmlContent CreateField(PropertyInfo property, object? model)
     {
         var formDiv = new TagBuilder("div");
         formDiv.InnerHtml.AppendHtml(CreateLabel(property));
