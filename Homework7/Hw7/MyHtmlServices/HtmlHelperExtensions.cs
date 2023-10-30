@@ -12,7 +12,7 @@ public static class HtmlHelperExtensions
     {
         var modelType = helper.ViewData.ModelExplorer.ModelType;
         var model = helper.ViewData.Model;
-        var properties = modelType.GetProperties();
+        var properties = modelType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
         var htmlBuilder = new HtmlContentBuilder();
         htmlBuilder.AppendHtml("<div style=\"display:flex; flex-direction: column; justify-content: space-between; width: 200px;\">");
 
