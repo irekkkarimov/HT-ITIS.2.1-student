@@ -51,6 +51,7 @@ public class CalculatorController : Controller
             Operation.Plus => calculator.Plus(arg1, arg2),
             Operation.Minus => calculator.Minus(arg1, arg2),
             Operation.Multiply => calculator.Multiply(arg1, arg2),
-            Operation.Divide => calculator.Divide(arg1, arg2)
+            Operation.Divide => calculator.Divide(arg1, arg2),
+            _ => throw new InvalidOperationException(Messages.InvalidOperationMessage)
         };
 }
