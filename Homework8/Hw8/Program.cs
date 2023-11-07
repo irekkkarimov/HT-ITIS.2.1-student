@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Hw8.Calculator;
+using Hw8.Services;
 
 namespace Hw8;
 
@@ -12,6 +13,7 @@ public class Program
 
         builder.Services.AddControllersWithViews();
         builder.Services.AddScoped<ICalculator, Services.Calculator>();
+        builder.Services.AddScoped<ICalculatorCaller, CalculatorCaller>();
 
         var app = builder.Build();
 
