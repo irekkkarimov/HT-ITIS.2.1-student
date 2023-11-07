@@ -26,12 +26,7 @@ public class CalculatorCaller : ICalculatorCaller
             return Result<double>.Failure(Messages.InvalidNumberMessage);
         return arg2Parsed == 0 
             ? Result<double>.Failure(Messages.DivisionByZeroMessage)
-            : Result<double>.Failure(CalculateSwitchOperation(arg1Parsed, operationTuple.Item2, arg2Parsed).ToString(CultureInfo.CurrentCulture));
-    }
-
-    public Result<double> Calculate(ICalculator calculator, string val1, string operation, string val2)
-    {
-        throw new NotImplementedException();
+            : Result<double>.Success(CalculateSwitchOperation(arg1Parsed, operationTuple.Item2, arg2Parsed));
     }
 
     public (bool, Operation) ValidateOperation(string operation) =>
@@ -51,6 +46,6 @@ public class CalculatorCaller : ICalculatorCaller
             Operation.Minus => _calculator.Minus(arg1, arg2),
             Operation.Multiply => _calculator.Multiply(arg1, arg2),
             Operation.Divide => _calculator.Divide(arg1, arg2),
-            Operation.Invalid => throw new InvalidOperationException(Messages.InvalidOperationMessage)
+            _ => throw new InvalidOperationException(Messages.InvalidOperationMessage)
         };
 }
