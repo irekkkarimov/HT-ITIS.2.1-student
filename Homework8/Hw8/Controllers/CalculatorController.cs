@@ -1,18 +1,22 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Hw8.Calculator;
+using Hw8.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hw8.Controllers;
 
 public class CalculatorController : Controller
 {
-    public ActionResult<double> Calculate([FromServices] ICalculator calculator,
+    public ActionResult<double> Calculate([FromServices] ICalculatorCaller calculatorCaller,
         string val1,
         string operation,
         string val2)
     {
-        throw new NotImplementedException();
+        var result = calculatorCaller.Calculate(val1, operation, val2);
+        if (result.Status == ResultStatus.Success)
+            return Ok(result.Value);
+        return BadRequest(result.Message);
     }
     
     [ExcludeFromCodeCoverage]
