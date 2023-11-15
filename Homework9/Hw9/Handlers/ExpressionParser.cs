@@ -51,7 +51,7 @@ public class ExpressionParser
                 case ")":
                 {
                     // Добавляем в постфикскную запись все операторы до открывающей скобки
-                    while (operations.Any() && operations.Peek() != "(")
+                    while (operations.Peek() != "(")
                     {
                         postfix.Append(operations.Pop());
                         postfix.Append(' ');
