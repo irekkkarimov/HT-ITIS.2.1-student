@@ -103,19 +103,14 @@ public class ExpressionValidator
 
     private static bool NotEndingWithExpression(string expression)
     {
-        foreach (var character in expression.Reverse())
+        switch (expression.Reverse().First())
         {
-            switch (character)
-            {
-                case '(':
-                case ')':
-                    return true;
-            }
-
-            return char.IsDigit(character);
+            case '(':
+            case ')':
+                return true;
         }
 
-        return true;
+        return char.IsDigit(expression.First());
     }
 
     private static (bool, string) OnlyNumbers(string expression)
