@@ -16,7 +16,7 @@ public class ExpressionParser
         { "/", 2 },
         { "~", 4 }
     };
-    
+
     public string ParseToPolishNotation(string[] expressionInput)
     {
         var expression = expressionInput
@@ -50,13 +50,14 @@ public class ExpressionParser
                 }
                 case ")":
                 {
+
                     // Добавляем в постфикскную запись все операторы до открывающей скобки
                     while (operations.Peek() != "(")
                     {
                         postfix.Append(operations.Pop());
                         postfix.Append(' ');
                     }
-                    
+
                     // Убираем открывающую скобку
                     operations.Pop();
                     isPreviousOpenParenthesis = false;
@@ -68,25 +69,25 @@ public class ExpressionParser
             if (element == "-" && isPreviousOpenParenthesis)
                 element = "~";
             isPreviousOpenParenthesis = false;
-            
+
             // Добавляем в постфикс все операторы из стека с более высоким приоритетом чем текущий
             while (operations.Any() && _operationPriority[operations.Peek()] >= _operationPriority[element])
             {
                 postfix.Append(operations.Pop());
                 postfix.Append(' ');
             }
-            
+
             // Добавляем в стек текущий оператор
             operations.Push(element);
         }
-        
+
         // Вписываем оставшиеся операторы в постфикс
         foreach (var operation in operations)
         {
             postfix.Append(operation);
             postfix.Append(' ');
         }
-        
+
         return postfix.ToString();
     }
 }

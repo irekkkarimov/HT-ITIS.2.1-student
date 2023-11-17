@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Hw9.ErrorMessages;
 
 namespace Hw9.ExpressionVisitor;
+
 using System.Linq.Expressions;
 
 [ExcludeFromCodeCoverage]
@@ -30,7 +31,7 @@ public class MyExpressionVisitor : ExpressionVisitor
 
         return await expressionCompiled;
     }
-    
+
     private static async Task<double[]> CompileBinaryAsync(Expression left, Expression right)
     {
         await Task.Delay(1000);
@@ -45,7 +46,7 @@ public class MyExpressionVisitor : ExpressionVisitor
     {
         return expressionType switch
         {
-            ExpressionType.Negate => 
+            ExpressionType.Negate =>
                 Expression.Negate(Expression.Constant(expressionValues[0])),
             ExpressionType.Add =>
                 Expression.Add(Expression.Constant(expressionValues[0]), Expression.Constant(expressionValues[1])),

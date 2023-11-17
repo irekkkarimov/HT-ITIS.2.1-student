@@ -1,4 +1,5 @@
 namespace Hw9.Regex;
+
 using System.Text.RegularExpressions;
 
 public static class RegexTemplates

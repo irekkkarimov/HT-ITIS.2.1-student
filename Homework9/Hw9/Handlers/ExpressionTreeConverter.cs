@@ -36,7 +36,7 @@ public class ExpressionTreeConverter
                         "*" => Expression.Multiply(left, right),
                         _ => Expression.Divide(left, right)
                     };
-                
+
                     expressionStack.Push(expression);
                 }
             }

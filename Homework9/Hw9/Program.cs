@@ -30,5 +30,7 @@ app.Run();
 namespace Hw9
 {
     [ExcludeFromCodeCoverage]
-    public partial class Program { }
+    public partial class Program
+    {
+    }
 }

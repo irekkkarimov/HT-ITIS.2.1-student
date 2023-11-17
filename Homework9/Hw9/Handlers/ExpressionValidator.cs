@@ -10,16 +10,16 @@ public class ExpressionValidator
         // Check for null or empty
         if (string.IsNullOrEmpty(expression))
             return (false, MathErrorMessager.EmptyString);
-        
+
         // Checking for allowed characters
         var unknownCharactersCheck = ContainsOnlyAllowedCharacters(expression);
         if (!unknownCharactersCheck.Item1)
             return (false, MathErrorMessager.UnknownCharacterMessage(unknownCharactersCheck.Item2));
-        
+
         // Correct bracket sequence
         if (!ContainsCorrectBracketPairs(expression))
             return (false, MathErrorMessager.IncorrectBracketsNumber);
-        
+
         // Checking if operands are numbers(double)
         var onlyNumberCheck = OnlyNumbers(expression);
         if (!onlyNumberCheck.Item1)
@@ -28,16 +28,16 @@ public class ExpressionValidator
         // Not starting with operation
         if (!NotStartingWithOperation(expression))
             return (false, MathErrorMessager.StartingWithOperation);
-        
+
         // Not ending with operation
         if (!NotEndingWithExpression(expression))
             return (false, MathErrorMessager.EndingWithOperation);
-        
+
         // Complex validation including different errors
         var complexValidation = ComplexValidation(expression);
         if (!complexValidation.Item1)
             return (false, complexValidation.Item2);
-        
+
         // Return empty value if validation passed
         return (true, "");
     }
@@ -70,7 +70,7 @@ public class ExpressionValidator
     private static bool ContainsCorrectBracketPairs(string expression)
     {
         var stack = new Stack<char>();
-        
+
         foreach (var character in expression)
         {
             switch (character)
@@ -122,8 +122,8 @@ public class ExpressionValidator
             .Select(i => i.Replace(" ", ""))
             .Where(i => i != "")
             .ToArray();
-        
-        
+
+
         foreach (var item in expressionWithoutOperators)
         {
             if (!double.TryParse(item, out _))
@@ -188,7 +188,7 @@ public class ExpressionValidator
                                 continue;
                             return (false, MathErrorMessager.TwoOperationInRowMessage(previousOperation, element));
                         }
-                        
+
                         isPreviousOperation = true;
                         isPreviousNumber = false;
                         isPreviousCloseParenthesis = false;
