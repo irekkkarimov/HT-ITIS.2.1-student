@@ -28,6 +28,9 @@ public class IntegrationCalculatorControllerTests : IClassFixture<WebApplication
         var response = await CalculateAsync(expression);
         Assert.True(response!.IsSuccess);
         Assert.Equal(result, response.Result.ToString(CultureInfo.InvariantCulture));
+        
+        // TESTING
+        // Assert.Equal(result, response.ErrorMessage);
     }
 
     [HomeworkTheory(Homeworks.HomeWork9)]

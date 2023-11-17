@@ -13,7 +13,7 @@ namespace Hw9.Controllers
         {
             _mathCalculatorService = mathCalculatorService;
         }
-        
+
         [HttpGet]
         [ExcludeFromCodeCoverage]
         public IActionResult Calculator()
