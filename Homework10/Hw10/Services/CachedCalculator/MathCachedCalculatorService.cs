@@ -17,6 +17,49 @@ public class MathCachedCalculatorService : IMathCalculatorService
 
 	public async Task<CalculationMathExpressionResultDto> CalculateMathExpressionAsync(string? expression)
 	{
-		throw new NotImplementedException();
+		// // For cache reading purposes we need to make sure that expression is not null
+		if (!string.IsNullOrEmpty(expression))
+		{
+			// Reading database cache
+			var solvingExpressions = _dbContext.SolvingExpressions;
+			var solvingExpressionsWhere = solvingExpressions.Where(i => i.Expression == expression.Trim());
+			if (solvingExpressionsWhere.Any())
+			{
+				// Getting cached expression result
+				var expressionResult = solvingExpressionsWhere.First().Result;
+			
+				// Fake delay
+				await Task.Delay(500);
+			
+				// Returning expression result
+				return new CalculationMathExpressionResultDto(expressionResult);
+			}
+		}
+		
+		
+		// Calculating expression using MathCalculatorService
+		var result = await _simpleCalculator.CalculateMathExpressionAsync(expression);
+
+		// If computation succeeded
+		if (result.IsSuccess)
+		{
+			// Declaring new SolvingExpression instance
+			var solvingExpression = new SolvingExpression
+			{
+				SolvingExpressionId = 0,
+				Expression = expression.Trim(),
+				Result = result.Result
+			};
+
+			// Writing to database
+			_dbContext.SolvingExpressions.Add(solvingExpression);
+			await _dbContext.SaveChangesAsync();
+			
+			// Returning result
+			return new CalculationMathExpressionResultDto(result.Result);
+		}
+
+		// Otherwise returning Error Message
+		return new CalculationMathExpressionResultDto(result.ErrorMessage);
 	}
 }
