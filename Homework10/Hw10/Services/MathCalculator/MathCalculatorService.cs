@@ -28,7 +28,7 @@ public class MathCalculatorService : IMathCalculatorService
 
             // Искуственная задержка
             await Task.Delay(1000);
-            
+
             // Компилируем выражение которое возвращает MyExpressionVisitor и вызываем
             var result = Expression.Lambda<Func<double>>(
                 await MyExpressionVisitor.VisitExpression(expressionConverted)).Compile().Invoke();

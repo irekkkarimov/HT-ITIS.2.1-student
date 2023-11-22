@@ -12,18 +12,16 @@ public class ExpressionValidator
             return (false, MathErrorMessager.EmptyString);
 
         // Checking for allowed characters
-        var unknownCharactersCheck = ContainsOnlyAllowedCharacters(expression);
-        if (!unknownCharactersCheck.Item1)
-            return (false, MathErrorMessager.UnknownCharacterMessage(unknownCharactersCheck.Item2));
+        if (ContainsOnlyAllowedCharacters(expression) is (false, var errorChar))
+            return (false, MathErrorMessager.UnknownCharacterMessage(errorChar));
 
         // Correct bracket sequence
         if (!ContainsCorrectBracketPairs(expression))
             return (false, MathErrorMessager.IncorrectBracketsNumber);
 
         // Checking if operands are numbers(double)
-        var onlyNumberCheck = OnlyNumbers(expression);
-        if (!onlyNumberCheck.Item1)
-            return (false, MathErrorMessager.NotNumberMessage(onlyNumberCheck.Item2));
+        if (OnlyNumbers(expression) is (false, var errorNumber))
+            return (false, MathErrorMessager.NotNumberMessage(errorNumber));
 
         // Not starting with operation
         if (!NotStartingWithOperation(expression))
@@ -34,9 +32,8 @@ public class ExpressionValidator
             return (false, MathErrorMessager.EndingWithOperation);
 
         // Complex validation including different errors
-        var complexValidation = ComplexValidation(expression);
-        if (!complexValidation.Item1)
-            return (false, complexValidation.Item2);
+        if (ComplexValidation(expression) is (false, var errorMessage))
+            return (false, errorMessage);
 
         // Return empty value if validation passed
         return (true, "");

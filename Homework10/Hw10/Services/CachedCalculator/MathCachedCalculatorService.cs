@@ -54,12 +54,10 @@ public class MathCachedCalculatorService : IMathCalculatorService
 			// Writing to database
 			_dbContext.SolvingExpressions.Add(solvingExpression);
 			await _dbContext.SaveChangesAsync();
-			
-			// Returning result
-			return new CalculationMathExpressionResultDto(result.Result);
+            
 		}
 
-		// Otherwise returning Error Message
-		return new CalculationMathExpressionResultDto(result.ErrorMessage);
-	}
+		// Returning CalculatorMathExpressionResultDto that was received from Calculating method
+        return result;
+    }
 }
