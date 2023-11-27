@@ -57,7 +57,7 @@ public static class MyExpressionVisitor
             ExpressionType.Multiply =>
                 Expression.Multiply(Expression.Constant(expressionValues[0]), Expression.Constant(expressionValues[1])),
             _ => expressionValues[1] == 0
-                ? throw new ArgumentException(MathErrorMessager.DivisionByZero)
+                ? throw new DivideByZeroException(MathErrorMessager.DivisionByZero)
                 : Expression.Divide(Expression.Constant(expressionValues[0]), Expression.Constant(expressionValues[1]))
         };
     }
