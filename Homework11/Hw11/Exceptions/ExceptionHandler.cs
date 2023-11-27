@@ -4,46 +4,46 @@ namespace Hw11.Exceptions;
 
 public class ExceptionHandler : IExceptionHandler
 {
-	private const string UnknownError = "Unknown error";
-	private const string InvalidNumber = "Invalid number";
-	private const string InvalidSyntax = "Invalid syntax";
-	private const string InvalidSymbol = "Invalid symbol";
-	
-	private readonly ILogger<ExceptionHandler> _logger;
+    private const string UnknownError = "Unknown error";
+    private const string InvalidNumber = "Invalid number";
+    private const string InvalidSyntax = "Invalid syntax";
+    private const string InvalidSymbol = "Invalid symbol";
 
-	public ExceptionHandler(ILogger<ExceptionHandler> logger)
-	{
-		_logger = logger;
-	}
+    private readonly ILogger<ExceptionHandler> _logger;
 
-	public void HandleException<T>(T exception) where T : Exception
-	{
-		this.Handle((dynamic) exception);
-	}
-	
-	[ExcludeFromCodeCoverage]
-	private void Handle(Exception exception)
-	{
-		_logger.LogError($"{UnknownError}: {exception.Message}");
-	}
+    public ExceptionHandler(ILogger<ExceptionHandler> logger)
+    {
+        _logger = logger;
+    }
 
-	private void Handle(InvalidNumberException exception)
-	{
-		_logger.LogError($"{InvalidNumber}: {exception.Message}");
-	}
+    public void HandleException<T>(T exception) where T : Exception
+    {
+        this.Handle((dynamic)exception);
+    }
 
-	private void Handle(InvalidSyntaxException exception)
-	{
-		_logger.LogError($"{InvalidSyntax}: {exception.Message}");
-	}
+    [ExcludeFromCodeCoverage]
+    private void Handle(Exception exception)
+    {
+        _logger.LogError($"{UnknownError}: {exception.Message}");
+    }
 
-	private void Handle(InvalidSymbolException exception)
-	{
-		_logger.LogError($"{InvalidSymbol}: {exception.Message}");
-	}
-	
-	private void Handle(DivideByZeroException exception)
-	{
-		_logger.LogError(exception.Message);
-	}
+    private void Handle(InvalidNumberException exception)
+    {
+        _logger.LogError($"{InvalidNumber}: {exception.Message}");
+    }
+
+    private void Handle(InvalidSyntaxException exception)
+    {
+        _logger.LogError($"{InvalidSyntax}: {exception.Message}");
+    }
+
+    private void Handle(InvalidSymbolException exception)
+    {
+        _logger.LogError($"{InvalidSymbol}: {exception.Message}");
+    }
+
+    private void Handle(DivideByZeroException exception)
+    {
+        _logger.LogError(exception.Message);
+    }
 }

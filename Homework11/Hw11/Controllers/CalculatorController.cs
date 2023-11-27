@@ -16,7 +16,7 @@ public class CalculatorController : Controller
         _mathCalculatorService = mathCalculatorService;
         _exceptionHandler = exceptionHandler;
     }
-        
+
     [HttpGet]
     [ExcludeFromCodeCoverage]
     public IActionResult Calculator()
