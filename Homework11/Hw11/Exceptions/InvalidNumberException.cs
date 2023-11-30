@@ -1,9 +1,9 @@
 ﻿namespace Hw11.Exceptions;
 
-public class InvalidNumberException: Exception
+public class InvalidNumberException : Exception
 {
-	public InvalidNumberException(string message)
-		: base(message)
-	{
-	}
+    public InvalidNumberException(string message)
+        : base(message)
+    {
+    }
 }
