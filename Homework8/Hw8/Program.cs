@@ -12,6 +12,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllersWithViews();
+        builder.Services.AddMiniProfiler(options => options.RouteBasePath = "/profiler");
         builder.Services.AddScoped<ICalculator, Services.Calculator>();
         builder.Services.AddScoped<ICalculatorCaller, CalculatorCaller>();
 
@@ -23,6 +24,8 @@ public class Program
             app.UseHsts();
         }
 
+        app.UseMiniProfiler();
+        
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 

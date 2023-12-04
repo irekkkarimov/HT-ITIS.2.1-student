@@ -33,7 +33,7 @@ public class WebApplicationWorkingTimeTests
 	{
 		await SendRequestCSharp("10", "*", "3");
 	}
-
+	
 	[Benchmark]
 	public async Task DivisionOperationTimeTestCSharp()
 	{
@@ -51,13 +51,13 @@ public class WebApplicationWorkingTimeTests
 	{
 		await SendRequestFSharp("3", "-", "2");
 	}
-
+	
 	[Benchmark]
 	public async Task MultiplicationOperationTimeTestFSharp()
 	{
 		await SendRequestFSharp("10", "*", "3");
 	}
-
+	
 	[Benchmark]
 	public async Task DivisionOperationTimeTestFSharp()
 	{
