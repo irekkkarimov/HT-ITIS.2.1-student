@@ -3,16 +3,16 @@ using JetBrains.dotMemoryUnit;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Tests.RunLogic.Attributes;
 using Xunit.Abstractions;
+using MemoryCachedCalculator;
 
 namespace Tests.CSharp.Homework13;
 
-public class MemoryTest : IClassFixture<WebApplicationFactory<MemoryTest>>
-    // TODO: replace MemoryTest with the right generic argument
+public class MemoryTest : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly HttpClient _client;
     private readonly ITestOutputHelper _output;
 
-    public MemoryTest(WebApplicationFactory<MemoryTest> factory, ITestOutputHelper output)
+    public MemoryTest(WebApplicationFactory<Program> factory, ITestOutputHelper output)
     {
         _output = output;
         DotMemoryUnitTestOutput.SetOutputMethod(_output.WriteLine);
