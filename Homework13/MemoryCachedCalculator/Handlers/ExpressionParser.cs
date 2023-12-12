@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using MemoryCachedCalculator.Regex;
 
 namespace MemoryCachedCalculator.Handlers;
 
+[ExcludeFromCodeCoverage]
 public class ExpressionParser
 {
     private readonly Dictionary<string, int> _operationPriority = new()
@@ -48,7 +50,6 @@ public class ExpressionParser
                 }
                 case ")":
                 {
-
                     // Добавляем в постфикскную запись все операторы до открывающей скобки
                     while (operations.Peek() != "(")
                     {

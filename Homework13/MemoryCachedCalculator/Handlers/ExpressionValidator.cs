@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using MemoryCachedCalculator.ErrorMessages;
 using MemoryCachedCalculator.Regex;
 
 namespace MemoryCachedCalculator.Handlers;
 
+[ExcludeFromCodeCoverage]
 public class ExpressionValidator
 {
     public static (bool, string) Validate(string expression)

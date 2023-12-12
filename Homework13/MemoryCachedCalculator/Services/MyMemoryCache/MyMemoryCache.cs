@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace MemoryCachedCalculator.Services.MyMemoryCache;
 
+[ExcludeFromCodeCoverage]
 public class MyMemoryCache : IMyMemoryCache
 {
     private readonly Dictionary<string, double> _cache = new();

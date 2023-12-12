@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using MemoryCachedCalculator.Dto;
 using MemoryCachedCalculator.ExpressionVisitor;
@@ -6,6 +7,7 @@ using MemoryCachedCalculator.Regex;
 
 namespace MemoryCachedCalculator.Services.MathCalculator;
 
+[ExcludeFromCodeCoverage]
 public class MathCalculatorService : IMathCalculatorService
 {
     public async Task<CalculationMathExpressionResultDto> CalculateMathExpressionAsync(string? expression)

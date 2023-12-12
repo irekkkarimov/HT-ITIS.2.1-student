@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace MemoryCachedCalculator.Handlers;
 
+[ExcludeFromCodeCoverage]
 public class ExpressionTreeConverter
 {
     public static Expression ConvertToExpressionTree(string expressionString)

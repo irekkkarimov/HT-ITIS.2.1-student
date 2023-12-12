@@ -1,8 +1,10 @@
-﻿using MemoryCachedCalculator.Dto;
+﻿using System.Diagnostics.CodeAnalysis;
+using MemoryCachedCalculator.Dto;
 using MemoryCachedCalculator.Services.MyMemoryCache;
 
 namespace MemoryCachedCalculator.Services.CachedCalculator;
 
+[ExcludeFromCodeCoverage]
 public class MathCachedCalculatorService : IMathCalculatorService
 {
     private readonly IMathCalculatorService _simpleCalculator;
